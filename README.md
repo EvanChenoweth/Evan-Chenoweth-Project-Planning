@@ -53,6 +53,12 @@ Some sprites and cool design concepts are going to be in my repo or on slack. Iâ
 
 ![UntitledGameWireframe](https://user-images.githubusercontent.com/46133394/191044679-a54eefb2-9d27-4350-8f65-ae822a20d5eb.png)
 
+![Room 2](https://user-images.githubusercontent.com/46133394/191080810-7a445384-37ac-4569-ba1f-53999507711e.png)
+
+![Room 3](https://user-images.githubusercontent.com/46133394/191080876-7b3228c6-7008-4220-adbd-a004fdff3d6e.png)
+
+![Room 4](https://user-images.githubusercontent.com/46133394/191080888-a1dc335b-55e4-468d-81a1-214ff56a50b9.png)
+
 And here is an image of the player sprite I want to use. The monster/minion sprite is still TBD. I also have a friend who said they will help me with creating some of the art and animations of characters if that's okay.
 
 ![TwistedFateSprite](https://user-images.githubusercontent.com/46133394/191017051-9c5db368-3ef0-48f4-afe8-5a95d275c669.png)
