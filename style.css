@@ -1,0 +1,56 @@
+body {
+    background-color: rgb(249, 249, 249);
+}
+
+#start-game {
+    width: 20vh;
+    height: 5vh;
+    color: rgb(32, 58, 84);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(87, 112, 245);
+    margin: 0 auto;
+    display: block;
+    transform: translate(0vh, -42.5vh);
+}
+
+#start-game:active {
+    background-color: rgb(87, 112, 245);
+}
+
+@font-face {
+    font-family: "Circular Std";
+    src: url('circular-std-medium-500.ttf') format('truetype');
+}
+
+.top-container {
+    margin: 0 auto;
+    display: block;
+    height: 10vh;
+    width: 95vw;
+    color: rgb(32, 58, 84);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(87, 112, 245);
+}
+
+canvas {
+    margin: 0 auto;
+    margin-top: 2vh;
+    display: block;
+    height: 85vh;
+    width: 95vw;
+    color: rgb(32, 58, 84);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(87, 112, 245);
+}
+
+canvas {
+    height: 85vh;
+    width: 95vw;
+}
+
+h1 {
+    font-family: "Circular Std";
+    font-size: 48px;
+    text-align: left;
+    margin: 1.5vh;
+}
