@@ -29,8 +29,16 @@ function startGame() {
 
         player.render()
         player.movePlayer()
+        projectile.render()
+        projectile.moveProjectile()
         monster.render()
     }
+
+    // function that changes the projectiles direction
+document.addEventListener('keydown', (e) => {
+    projectile.setDirection(e.key)
+    
+})
 
     // function that changes the player's direction
 document.addEventListener('keydown', (e) => {
@@ -56,7 +64,7 @@ const player = new TwistedFate(0, 0, 40, 40, true)
     // Create Monster
 const monster = new Monster(100, 400, 'green', 60, 60, true)
     // Create Projectile
-const projectile = new Projectile(player.x, player.y, 'darkgrey', 15, 15)
+const projectile = new Projectile(20, 15, 'darkgrey', 15, 15)
 }
 
 // Twisted Fate Class
@@ -154,48 +162,51 @@ class Projectile {
         this.color = color,
         this.width = width,
         this.height = height,
-        this.speed = 15,
+        this.speed = 20,
         this.direction = {
             up: false,
             down: false,
             left: false,
             right: false
         },
+        // we need two key based functions here that will change our hero's movement direction
+        // this time, we'll only use WASD keys
+        // setDirection will be tied to a keyDown event
         this.setDirection = function (key) {
-            if (key.toLowerCase() == 'w') { this.direction.up = true }
-            if (key.toLowerCase() == 'a') { this.direction.left = true }
-            if (key.toLowerCase() == 's') { this.direction.down = true }
-            if (key.toLowerCase() == 'd') { this.direction.right = true }
+            if (key.toLowerCase() == 'w') {
+                this.direction.up = true
+                this.direction.left = false
+                this.direction.right = false
+                this.direction.down = false
+            } else if (key.toLowerCase() == 'a') { 
+                this.direction.left = true
+                this.direction.up = false
+                this.direction.right = false
+                this.direction.down = false
+            } else if (key.toLowerCase() == 's') { 
+                this.direction.down = true
+                this.direction.up = false
+                this.direction.right = false
+                this.direction.left = false
+            } else if (key.toLowerCase() == 'd') { 
+                this.direction.right = true
+                this.direction.up = false
+                this.direction.left = false
+                this.direction.down = false
+            } 
         },
-        // we're also adding a movePlayer function that is tied to our directions
         this.moveProjectile = function () {
-            // moveProjectile, sends our projectile flying in whatever direction is true
             if (this.direction.up) {
                 this.y -= this.speed
-                if (this.y <= 0) {
-                    this.y = 0
-                }
             }
             if (this.direction.left) {
-                this.x -= this.speed
-                if (this.x <= 0) {
-                    this.x = 0
-                }
+                this.x = this.x - this.speed
             }
             if (this.direction.down) {
                 this.y += this.speed
-                // for down, and right, we need the entire character for our detection of the wall, as well as the canvas width and height
-                if (this.y + this.height >= game.height) {
-                    this.y = game.height - this.height
-                }
             }
             if (this.direction.right) {
                 this.x += this.speed
-                // while we're tracking movement, let's stop our projectile from exiting the top of the screen
-                // for down, and right, we need the entire character for our detection of the wall, as well as the canvas width and height
-                if (this.x + this.width >= game.width) {
-                    this.x = game.width - this.width
-                }
             }
         },
         this.render = function () {
