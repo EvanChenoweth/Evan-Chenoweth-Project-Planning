@@ -10,8 +10,6 @@ const game = document.getElementById('canvas')
 // Twisted Fate Sprites
 const tf = new Image()
 tf.src = "Twisted_Fate.png"
-// Movement of objects
-const movement = document.getElementById('movement')
 // Game context is 2d
 const ctx = game.getContext('2d')
 
@@ -20,52 +18,6 @@ const ctx = game.getContext('2d')
 // Functions
 
 // When startButton is clicked, Start Game
-function startGame() {
-    startButton.remove()
-    console.log('Game Started')
-    
-    function gameLoop() {
-        ctx.clearRect(0, 0, game.width, game.height)
-
-        player.render()
-        player.movePlayer()
-        projectile.render()
-        projectile.moveProjectile()
-        monster.render()
-    }
-
-    // function that changes the projectiles direction
-document.addEventListener('keydown', (e) => {
-    projectile.setDirection(e.key)
-    
-})
-
-    // function that changes the player's direction
-document.addEventListener('keydown', (e) => {
-    // when a key is pressed, call the setDirection method
-    player.setDirection(e.key)
-})
-
-// function that stops the player direction
-document.addEventListener('keyup', (e) => {
-    // when a key is released, call the unsetDirection method
-    player.unsetDirection(e.key)
-})
-
-// Sets the game width and height to be the same as canvas size.
-game.setAttribute('width', getComputedStyle(game)['width'])
-game.setAttribute('height', getComputedStyle(game)['height'])
-
-// used to render the game every 60 ms
-const gameInterval = setInterval(gameLoop, 60)
-
-    // Create TF
-const player = new TwistedFate(0, 0, 40, 40, true)
-    // Create Monster
-const monster = new Monster(100, 400, 'green', 60, 60, true)
-    // Create Projectile
-const projectile = new Projectile(20, 15, 'darkgrey', 15, 15)
-}
 
 // Twisted Fate Class
 class TwistedFate {
@@ -156,7 +108,7 @@ class Monster {
 }
 
 class Projectile {
-    constructor(x, y, color, width, height) {
+    constructor(x, y, color, width, height, direction) {
         this.x = x,
         this.y = y,
         this.color = color,
@@ -164,10 +116,10 @@ class Projectile {
         this.height = height,
         this.speed = 20,
         this.direction = {
-            up: false,
-            down: false,
-            left: false,
-            right: false
+            up: (direction.up),
+            down: (direction.down),
+            left: (direction.left),
+            right: (direction.right)
         },
         // we need two key based functions here that will change our hero's movement direction
         // this time, we'll only use WASD keys
@@ -200,7 +152,7 @@ class Projectile {
                 this.y -= this.speed
             }
             if (this.direction.left) {
-                this.x = this.x - this.speed
+                this.x -= this.speed
             }
             if (this.direction.down) {
                 this.y += this.speed
@@ -215,6 +167,82 @@ class Projectile {
         }
     }
 }
+
+function startGame() {
+    startButton.remove()
+    console.log('Game Started')
+    
+    let projectiles = []
+
+    function gameLoop() {
+        ctx.clearRect(0, 0, game.width, game.height)
+
+        player.render()
+        projectiles.forEach((projectile) => {
+            projectile.moveProjectile()
+            projectile.render()
+        })
+        player.movePlayer()
+    }
+
+    // function that 
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'j') {
+        let xpos = player.x
+        console.log(player.x)
+        let ypos = player.y
+        let direction = player.direction
+        const projectile = new Projectile(xpos + 20, ypos + 15, 'darkgrey', 15, 15, direction)
+        if ((direction.up) == false && (direction.right) == false && (direction.down) == false && (direction.left) == false) {
+            Object.assign(projectile.direction.right = true)
+        }
+        projectiles.push(projectile)
+        console.log(projectiles)
+            // hit detection function
+            function detectHit(thing) {
+                if(projectile.x < thing.x + thing.width 
+                    && projectile.x + projectile.width > thing.x
+                    && projectile.y < thing.y + thing.height
+                    && projectile.y + projectile.height > thing.y) {
+                        console.log('Working')
+                }
+            }
+        }
+        function hitDetectLoop() {
+            if (monster.alive) {
+                monster.render()
+                detectHit(monster)
+            }
+        }
+        const hitInterval = setInterval(hitDetectLoop, 60)
+    })
+
+        // function that changes the player's direction
+    document.addEventListener('keydown', (e) => {
+        // when a key is pressed, call the setDirection method
+        player.setDirection(e.key)
+    })
+
+    // function that stops the player direction
+    document.addEventListener('keyup', (e) => {
+        // when a key is released, call the unsetDirection method
+        player.unsetDirection(e.key)
+    })
+
+    // Sets the game width and height to be the same as canvas size.
+    game.setAttribute('width', getComputedStyle(game)['width'])
+    game.setAttribute('height', getComputedStyle(game)['height'])
+
+    // used to render the game every 60 ms
+    const gameInterval = setInterval(gameLoop, 60)
+
+        // Create TF
+    const player = new TwistedFate(20, 20, 40, 40, true)
+        // Create Monster
+    const monster = new Monster(100, 400, 'green', 60, 60, true)
+    
+}
+
 
 // Start Button
 startButton.addEventListener('click', startGame)
