@@ -60,4 +60,7 @@ h2 {
     color: rgb(32, 58, 84);
     text-align: left;
     margin: 2vh;
+    width: 100vh;
+    transform: translate(1.35vh, 0vh);
+    border: 5px solid rgb(87, 112, 245)
 }
