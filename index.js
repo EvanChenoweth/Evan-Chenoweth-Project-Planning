@@ -32,9 +32,7 @@ class TwistedFate {
         this.height = height,
         this.health = 30,
         this.alive = alive,
-        // we need two additional properties in order to make our hero move around a little smoother.
         this.speed = 10,
-        // because we're going to rework our movement handler, we need directions, set to be different values that we can update with a keypress
         this.direction = {
             up: false,
             down: false,
@@ -42,7 +40,7 @@ class TwistedFate {
             right: false
         },
         // we need two key based functions here that will change our hero's movement direction
-        // this time, we'll only use WASD keys(purely for the sake of time)
+        // this time, we'll only use WASD keys
         // setDirection will be tied to a keyDown event
         this.setDirection = function (key) {
             if (key.toLowerCase() == 'w') { this.direction.up = true }
@@ -114,19 +112,18 @@ class Monster {
             left: false,
             right: false
         },
-        // we're also adding a movePlayer function that is tied to our directions
         this.moveMonster = function () {
-            // movePlayer, sends our guy flying in whatever direction is true
+            // moveMonster, sends our monsters flying in whatever direction is true
             if (this.direction.up) {
                 this.y -= this.speed
-                // while we're tracking movement, let's stop our hero from exiting the top of the screen
+                // while we're tracking movement, let's stop our monster from exiting the top of the screen
                 if (this.y <= 0) {
                     this.y = 0
                 }
             }
             if (this.direction.left) {
                 this.x -= this.speed
-                // while we're tracking movement, let's stop our hero from exiting the top of the screen
+                // while we're tracking movement, let's stop our monster from exiting the top of the screen
                 if (this.x <= 0) {
                     this.x = 0
                 }
@@ -470,6 +467,9 @@ function startGame() {
     }
     const playerHitInterval = setInterval(playerHitDetectLoop, 60)
 
+
+    // at the time of making all of this i decided that I actually don't know what a for loop is :)
+    // definitely on the to-do list.
     const monsterDirection = function () {
         if (monster.x < player.x) {
             monster.direction.right = true
