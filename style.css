@@ -58,7 +58,7 @@ h1 {
 h2 {
     font-family: "Circular Std";
     color: rgb(32, 58, 84);
-    text-align: left;
+    text-align: center;
     margin: 2vh;
     width: 100vh;
     transform: translate(1.35vh, 0vh);
