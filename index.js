@@ -311,6 +311,9 @@ function startGame() {
         if ((direction.up) == false && (direction.right) == false && (direction.down) == false && (direction.left) == false) {
             Object.assign(projectile.direction.right = true)
         }
+        if ((direction.left) == true && (direction.right) == true) {
+            Object.assign(projectile.direction.left = false)
+        }
         projectiles.push(projectile)
         console.log(projectiles)
             // hit detection function
@@ -382,7 +385,7 @@ function startGame() {
             && monster.y < thing.y + thing.height
             && monster.y + monster.height > thing.y) {
                 thing.health --
-                console.log('Working!')
+                textBox.innerText = 'Oww that hurts! Health: ' + player.health + '/30'
         }
     }
     function detectPlayerHit1(thing) {
@@ -391,7 +394,7 @@ function startGame() {
             && monsterRandom.y < thing.y + thing.height
             && monsterRandom.y + monsterRandom.height > thing.y) {
                 thing.health --
-                console.log('Working!')
+                textBox.innerText = 'Oww that hurts! Health: ' + player.health + '/30'
         }
     }
     function detectPlayerHit2(thing) {
@@ -400,7 +403,7 @@ function startGame() {
             && monsterRandom1.y < thing.y + thing.height
             && monsterRandom1.y + monsterRandom1.height > thing.y) {
                 thing.health --
-                console.log('Working!')
+                textBox.innerText = 'Oww that hurts! Health: ' + player.health + '/30'
         }
     }
     function detectPlayerHit3(thing) {
@@ -409,7 +412,7 @@ function startGame() {
             && monsterRandom2.y < thing.y + thing.height
             && monsterRandom2.y + monsterRandom2.height > thing.y) {
                 thing.health --
-                console.log('Working!')
+                textBox.innerText = 'Oww that hurts! Health: ' + player.health + '/30'
         }
     }
     function detectPlayerHit4(thing) {
@@ -418,7 +421,7 @@ function startGame() {
             && monsterRandom3.y < thing.y + thing.height
             && monsterRandom3.y + monsterRandom3.height > thing.y) {
                 thing.health --
-                console.log('Working!')
+                textBox.innerText = 'Oww that hurts! Health: ' + player.health + '/30'
         }
     }
     function detectPlayerHit5(thing) {
@@ -427,7 +430,7 @@ function startGame() {
             && monsterRandom4.y < thing.y + thing.height
             && monsterRandom4.y + monsterRandom4.height > thing.y) {
                 thing.health --
-                console.log('Working!')
+                textBox.innerText = 'Oww that hurts! Health: ' + player.health + '/30'
         }
     }
     function detectPlayerHit6(thing) {
@@ -436,7 +439,7 @@ function startGame() {
             && monsterRandom5.y < thing.y + thing.height
             && monsterRandom5.y + monsterRandom5.height > thing.y) {
                 thing.health --
-                console.log('Working!')
+                textBox.innerText = 'Oww that hurts! Health: ' + player.health + '/30'
         }
     }
     function playerHitDetectLoop() {
